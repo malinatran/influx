@@ -5,6 +5,7 @@ var md5 = require('md5');
 var cookieParser = require('cookie-parser');
 var express = require('express');
 var handlebars = require('express-handlebars');
+var moment = require('moment');
 
 var app = express();
 
@@ -32,8 +33,12 @@ app.use(cookieParser());
 // Database
 mongoose.connect('mongodb://localhost/influx');
 
+// ================================================
+// 0. Load user's stories
+// ================================================
 app.get('/', function(req, res) {
-  Story.find().sort('-date').exec(function(err, stories) {
+  var user_id = req.cookies.loggedInId;
+  Story.find({ user: user_id }).sort('-date').exec(function(err, stories) {
     res.render('index', {
       stories: stories,
       isUserLoggedIn: (typeof req.cookies.loggedInId !== 'undefined')
@@ -41,7 +46,9 @@ app.get('/', function(req, res) {
   });
 });
 
+// ================================================
 // 1. Signup new user
+// ================================================
 app.post('/users', function(req, res) {
   var password_hash = md5(req.body.password);
   var user = new User({
@@ -60,7 +67,9 @@ app.post('/users', function(req, res) {
   });
 });
 
-// 2. Login user
+// ================================================
+// 2. Login returning user
+// ================================================
 app.post('/login', function(req, res) {
   User.findOne({
     username: req.body.username,
@@ -77,14 +86,21 @@ app.post('/login', function(req, res) {
   });
 });
 
+// ================================================
+// 3. Logout user
+// ================================================
 app.get('/logout', function(req, res) {
   res.clearCookie('loggedInId');
   res.redirect('/');
 });
 
-// 3. Create new story
+// ================================================
+// 4. Create new story
+// ================================================
 app.post('/stories', function(req, res) {
+  date = moment(req.body.updated_at).format("MMM Do, YYYY");
   var story = new Story({
+    date: date,
     location: req.body.location,
     prompt: req.body.prompt, 
     anecdote: req.body.anecdote,
@@ -101,12 +117,57 @@ app.post('/stories', function(req, res) {
   });
 });
 
-// 4. Get user's stories
+// ================================================
+// 5. Get individual story
+// ================================================
 app.get('/stories', function(req, res) {
-  var user_id = req.cookies.loggedInId;
-  Story.find({"user": user_id}).sort('-date').exec(function(err,stories) {
-    res.send(stories);
+  Story.findById({ _id: req.body.id }, {
+    date: date,
+    location: req.body.location,
+    prompt: req.body.prompt, 
+    anecdote: req.body.anecdote,
+    image: req.body.image,
+    user: req.cookies.loggedInId
+  }, function(err, story) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(story);
+    }
   });
 });
 
+// ================================================
+// 6. Edit individual story
+// ================================================
+app.put('/stories', function(req, res) {
+  date = moment(req.body.updated_at).format("MMM Do, YYYY");
+  Story.findOneAndUpdate({ _id: req.params.id }, {
+    date: date,
+    location: req.body.location,
+    prompt: req.body.prompt, 
+    anecdote: req.body.anecdote,
+    image: req.body.image,
+    user: req.cookies.loggedInId
+  }, function(err, story) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(story);
+    }
+  });
+});
+
+// ================================================
+// 7. Delete story
+// ================================================
+app.delete('/delete/:id', function(req, res) {
+  User.findByIdAndRemove(req.params.id).exec(function(err, story) {
+    if (err) {
+      res.statusCode = 404;
+    } else {
+      res.send({});
+    }
+  });
+});
 

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var StorySchema = new mongoose.Schema({
+  date: String,
   location: String,
   prompt: String,
   image: String,
