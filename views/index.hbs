@@ -1,0 +1,64 @@
+  <!-- STORY MODAL -->
+   <div class="modal fade" id="story-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form action="/stories" method="POST">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">New Story</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <input name="location" type="text" class="form-control col-md-3" placeholder="Location">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <select name="prompt" id="selected-prompt">
+                  <option value="prompt1">Where are you at in life?</option>
+                  <option value="prompt2">What has been your biggest regret?</option>
+                  <option value="prompt3">Who are you?</option>
+                  <option value="prompt4">Where do you see yourself in 5 years?</option>
+                  <option value="prompt5">What are you currently struggling with?</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <label for="anecdote">Tell us your story:</label>
+                <textarea name="anecdote" class="form-control col-md-3"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <label for="image" class="col-md-2 text-center">Insert an image:</label>
+                <input name="image" class="form-control col-md-3">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+            <button type="submit" id="story-submit-btn" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {{#isUserLoggedIn}}
+  {{#each stories}}
+  <div class="row">
+    <div class="col-md-12">
+      <div>{{anecdote}}</div>
+      <button class="view-survey btn btn-default" data-id="{{_id}}">View</button>
+      <button class="edit-survey btn btn-default" data-id="{{_id}}">Edit</button>
+    </div>
+  </div>
+  {{/each}}
+
+  <!-- BUTTON TRIGGERING STORY MODAL -->
+  <button type="button" data-toggle="modal" data-target="#story-modal">Share your story</button>
+  {{/isUserLoggedIn}}
+
