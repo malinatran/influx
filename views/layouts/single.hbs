@@ -3,10 +3,12 @@
 <head>
   <title>in/flux</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Karla:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
+
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div>
@@ -22,6 +24,44 @@
       </div>
     </div>
   </nav>
+
+  {{^isUserLoggedIn}}
+  <div class="container">
+    <div class="row text-center">
+      <div id="title">in<span id="line">/</span>flux</div>
+    </div>
+    <div class="row text-center">
+      <div id="tagline">The story of a changing America.</div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div id="graph-container"></div>
+      <div class="row">
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div id="map-container"></div>
+      <div class="row">
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" style="padding: 0">
+    <div id="quote-container">
+      <div class="row text-center">
+        <p id="quote">Rather than being feared, America's new diversity—poised to reinvigorate the country at a time when other developed nations are facing advanced aging and population loss—can be celebrated.</p>
+      </div>
+      <div class="row text-center">
+        <p id="name">William Frey, author of <em>Diversity Explosion: How New Racial Demographics are Remaking America</em></p>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div id="map-canvas"></div>
+    </div>
+  </div>
+  {{/isUserLoggedIn}}
 
   {{{body}}}
 
@@ -97,5 +137,11 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.js"></script>
+  <script src="/app.js"></script>
+
+  {{^isUserLoggedIn}}
+  <script src="/map.js"></script> 
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEhzbl8dG3D4RxWLxf8LQNB989kAy2QwE&callback=initMap"></script> 
+  {{/isUserLoggedIn}}
 </body>
 </html>

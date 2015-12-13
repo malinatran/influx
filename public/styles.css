@@ -1,3 +1,43 @@
 html, body {
   background-color: papayawhip;
+  font-family: 'Karla', sans-serif;
 }
+
+#title {
+  font-family: 'Karla', sans-serif;
+  font-size: 80px;
+  font-weight: 700;
+}
+
+#line {
+  color: red;
+  font-weight: 400;
+}
+
+#tagline {
+  font-family: 'Karla', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+#quote-container {
+  background-color: #ccf9fb;
+  padding: 50px;
+}
+
+#quote {
+  font-family: 'Karla', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+#name {
+  font-size: 16px;
+}
+
+#map-canvas {
+  margin: 0 auto;
+  height: 500px;
+  background-color: black;
+} 

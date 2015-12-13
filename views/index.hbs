@@ -1,4 +1,5 @@
 {{#isUserLoggedIn}}
+
   <button type="button" data-toggle="modal" data-target="#story-modal">Share your story</button>
 
   {{#each stories}}
@@ -6,9 +7,9 @@
     <div class="col-md-12">
       <div>{{location}}</div>
       <div>{{date}}</div>
-      <button id="view-story" class="btn btn-default" data-id="{{_id}}" data-toggle="modal" data-target="#story-modal-view">View</button>
-      <button id="edit-story" class="btn btn-default" data-id="{{_id}}" data-toggle="modal" data-target="#story-modal-edit">Edit</button>
-      <a href="/delete/{{_id}}" data-method="DELETE" id="delete-link">Delete</a>
+      <button class="btn btn-default" data-toggle="modal" data-target="#story-modal-view-{{_id}}">View</button>
+      <button class="btn btn-default" data-toggle="modal" data-target="#story-modal-edit-{{_id}}">Edit</button>
+      <form method="POST" action="/stories/{{_id}}?_method=DELETE"><button type="submit">Delete</button></form>
     </div>
   </div>
   {{/each}}
@@ -34,7 +35,7 @@
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
               <select name="prompt" id="selected-prompt">
-                <option value="">Choose your own prompt:</option>
+                <option value="">Choose your own prompt</option>
                 <option value="prompt1">Where are you at in life?</option>
                 <option value="prompt2">What has been your biggest regret?</option>
                 <option value="prompt3">Who are you?</option>
@@ -45,14 +46,13 @@
           </div>
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <label for="anecdote">Tell us your story:</label>
-              <textarea name="anecdote" class="form-control col-md-3"></textarea>
+              <textarea name="anecdote" class="form-control col-md-3" placeholder="Tell us your story."></textarea>
             </div>
           </div>
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <label for="image" class="col-md-2 text-center">Insert an image:</label>
-              <input name="image" class="form-control col-md-3">
+              <input type="file" id="file_input"/>
+              <input type="hidden" id="image_url" name="image" value="/public/default.jpg">
             </div>
           </div>
         </div>
@@ -67,7 +67,8 @@
 </div>
 
 <!-- VIEW STORY MODAL -->
-<div class="modal fade" id="story-modal-view" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+{{#each stories}}
+<div class="modal fade" id="story-modal-view-{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <form action="/stories/{{_id}}" method="GET">
@@ -78,32 +79,17 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <input name="location" id="location" type="text" class="form-control col-md-3" value="{{location}}">
-              <input type="hidden" data-id="{{_id}}">
+              {{location}} | {{date}}
             </div>
           </div>
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <select name="prompt" id="selected-prompt" value="{{prompt}}">
-                <option value="">Choose your prompt</option>
-                <option value="prompt1">Where are you at in life?</option>
-                <option value="prompt2">What has been your biggest regret?</option>
-                <option value="prompt3">Who are you?</option>
-                <option value="prompt4">Where do you see yourself in 5 years?</option>
-                <option value="prompt5">What are you currently struggling with?</option>
-              </select>
+              {{anecdote}}
             </div>
           </div>
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <label for="anecdote">Tell us your story:</label>
-              <textarea name="anecdote" class="form-control col-md-3" value="{{anecdote}}"></textarea>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <label for="image" class="col-md-2 text-center">Insert an image:</label>
-              <input name="image" class="form-control col-md-3" value="{{image}}">
+              {{image}}
             </div>
           </div>
         </div>
@@ -114,13 +100,14 @@
     </div>
   </div>
 </div>
+{{/each}}
 
-
-<!-- EDIT STORY MODAL -->
-<div class="modal fade" id="story-modal-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- EDIT STORY MODAL --> 
+{{#each stories}}
+<div class="modal fade" id="story-modal-edit-{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form action="/stories" method="PUT">
+      <form method="POST" action="/stories/{{_id}}?_method=PUT">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">Edit Your Story</h4>
@@ -147,7 +134,7 @@
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
               <label for="anecdote">Tell us your story:</label>
-              <textarea name="anecdote" class="form-control col-md-3" value="{{anecdote}}"></textarea>
+              <textarea name="anecdote" class="form-control col-md-3">{{anecdote}}</textarea>
             </div>
           </div>
           <div class="row">
@@ -160,9 +147,10 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="reset" class="btn btn-default">Reset</button>
-          <button type="submit" id="story-submit-btn" class="btn btn-primary">Update</button>
+          <button type="submit" class="btn btn-primary">Update</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+{{/each}}
