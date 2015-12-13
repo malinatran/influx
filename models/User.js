@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var SurveyResponseSchema = require('./story').schema;
 
 var UserSchema = new mongoose.Schema({
   username: String,

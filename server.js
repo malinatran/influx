@@ -26,8 +26,8 @@ app.set('view engine', '.hbs');
 app.listen(port);
 
 // Models
-var User = require('./models/user.js');
-var Story = require('./models/story.js');
+var User = require('./models/User.js');
+var Story = require('./models/Story.js');
 
 // Middleware
 app.use(methodOverride('_method'));
