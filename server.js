@@ -15,6 +15,7 @@ var app = express();
 
 var router = express.Router();
 var port = process.env.PORT || 3000;
+var mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost/influx';
 
 // Listener
 app.engine('.hbs', handlebars({
@@ -41,7 +42,7 @@ var AWS_SECRET_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 var S3_BUCKET = process.env.S3_BUCKET_NAME;
 
 // Database
-mongoose.connect('mongodb://localhost/influx');
+mongoose.connect(mongoURI);
 
 // ================================================
 // 0. Load user's stories
