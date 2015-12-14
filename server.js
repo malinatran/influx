@@ -20,7 +20,14 @@ var mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost/influx';
 // Listener
 app.engine('.hbs', handlebars({
   defaultLayout: 'single',
-  extname: '.hbs'
+  extname: '.hbs',
+  helpers: {
+    ifEquals: function(v1, v2, options) {
+      return (v1 == v2)
+           ? options.fn(this)
+           : options.inverse(this);
+    }
+  }
 }));
 app.set('view engine', '.hbs');
 app.listen(port);
@@ -45,17 +52,29 @@ var S3_BUCKET = process.env.S3_BUCKET_NAME;
 mongoose.connect(mongoURI);
 
 // ================================================
-// 0. Load user's stories
+// 0. View homepage and dashboard
 // ================================================
 app.get('/', function(req, res) {
   var user_id = req.cookies.loggedInId;
-  Story.find({ user: user_id }).sort('-date').exec(function(err, stories) {
+  // Story.find({ user: user_id }).sort('-date').exec(function(err, stories) {
+  Story.find().exec(function(err, stories) {
     res.render('index', {
       stories: stories,
       isUserLoggedIn: (typeof req.cookies.loggedInId !== 'undefined')
     });
   });
 });
+
+app.get('/dashboard', function(req, res) {
+  var user_id = req.cookies.loggedInId;
+  Story.find({ user: user_id }).sort('-date').exec(function(err, stories) {
+    res.render('dashboard', {
+      stories: stories,
+      isUserLoggedIn: (typeof req.cookies.loggedInId !== 'undefined')
+    });
+  });
+});
+
 
 // ================================================
 // 1. Signup new user
@@ -113,6 +132,8 @@ app.post('/stories', function(req, res) {
   var story = new Story({
     date: date,
     location: req.body.location,
+    latitude: req.body.latitude,
+    longitude: req.body.longitude,
     prompt: req.body.prompt, 
     anecdote: req.body.anecdote,
     image: req.body.image,
@@ -123,7 +144,7 @@ app.post('/stories', function(req, res) {
       console.log(err);
     } else {
       console.log('Story is created.');
-      res.redirect('/');
+      res.redirect('/dashboard');
     }
   });
 });
@@ -135,6 +156,8 @@ app.get('/stories', function(req, res) {
   Story.findById({ _id: req.body.id }, {
     date: date,
     location: req.body.location,
+    latitude: req.body.latitude,
+    longitude: req.body.longitude,
     prompt: req.body.prompt, 
     anecdote: req.body.anecdote,
     image: req.body.image,
@@ -156,6 +179,8 @@ app.put('/stories/:id', function(req, res) {
   Story.findOneAndUpdate({ _id: req.params.id }, {
     date: date,
     location: req.body.location,
+    latitude: req.body.latitude,
+    longitude: req.body.longitude,
     prompt: req.body.prompt, 
     anecdote: req.body.anecdote,
     image: req.body.image,
@@ -164,7 +189,7 @@ app.put('/stories/:id', function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/');
+      res.redirect('/dashboard');
     }
   });
 });
@@ -177,13 +202,13 @@ app.delete('/stories/:id', function(req, res) {
     if (err) {
       res.statusCode = 404;
     } else {
-      res.redirect('/');
+      res.redirect('/dashboard');
     }
   });
 });
 
 // ================================================
-// 8. Delete story
+// 8. Upload image file to AWS
 // ================================================
 app.get('/sign_s3', function(req, res) {
   aws.config.update({
@@ -191,9 +216,10 @@ app.get('/sign_s3', function(req, res) {
     secretAccessKey: AWS_SECRET_KEY
   });
   var s3 = new aws.S3();
+  var key = req.cookies.loggedInId + '_' + new Date().getTime() + '_' + req.query.file_name;
   var s3_params = {
     Bucket: S3_BUCKET,
-    Key: req.query.file_name,
+    Key: key,
     Expires: 60,
     ContentType: req.query.file_type,
     ACL: 'public-read'
@@ -202,10 +228,9 @@ app.get('/sign_s3', function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      var file_name = req.cookies.loggedInId + '_' + new Date().getTime() + '_' + req.query.file_name;
       var return_data = {
         signed_request: data,
-        url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+file_name
+        url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+key
       };
       res.send(return_data);
     }

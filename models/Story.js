@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var StorySchema = new mongoose.Schema({
   date: String,
   location: String,
+  latitude: String,
+  longitude: String,
   prompt: String,
   image: String,
   anecdote: String,

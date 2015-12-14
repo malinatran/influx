@@ -1,156 +1,130 @@
-{{#isUserLoggedIn}}
+{{#each stories}}
+<div class="google-map-stories hidden" data-lat="{{latitude}}" data-lng="{{longitude}}">
+  <h5>{{location}}</h5>
+  <img src="{{image}}"/>
+  <p>{{anecdote}}</p>
+</div>
+{{/each}}
 
-  <button type="button" data-toggle="modal" data-target="#story-modal">Share your story</button>
 
-  {{#each stories}}
+<div class="container">
+  <div class="row text-center">
+    <div id="title">in<span id="line">/</span>flux</div>
+  </div>
+
+  <div class="row text-center">
+    <div id="tagline">The story of a changing America.</div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div id="graph-container"></div>
+</div>
+
+<div class="container-fluid" style="padding: 0">
+  <div id="quote-container">
+    <div class="row text-center">
+      <p id="quote">Rather than being feared, America's new diversity—poised to reinvigorate the country at a time when other developed nations are facing advanced aging and population loss—can be celebrated.</p>
+    </div>
+    <div class="row text-center">
+      <p id="name">William Frey, author of <em>Diversity Explosion: How New Racial Demographics are Remaking America</em></p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <div>{{location}}</div>
-      <div>{{date}}</div>
-      <button class="btn btn-default" data-toggle="modal" data-target="#story-modal-view-{{_id}}">View</button>
-      <button class="btn btn-default" data-toggle="modal" data-target="#story-modal-edit-{{_id}}">Edit</button>
-      <form method="POST" action="/stories/{{_id}}?_method=DELETE"><button type="submit">Delete</button></form>
-    </div>
+    <div id="origin-container" style="width:100%;"></div>
   </div>
-  {{/each}}
+  <div class="row">
+    <div id="race-container" style="width:100%;"></div>
+  </div>
+  <div class="row">
+    <div id="age-container" style="width:100%;"></div>
+    <button id="age-1990-btn">1990</button>
+    <button id="age-2000-btn">2000</button>
+    <button id="age-2010-btn">2010</button>
+  </div>
+</div>
 
-{{/isUserLoggedIn}}
+<div class="container-fluid">
+  <div class="row">
+    <div id="map-canvas"></div>
+  </div>
+</div>
 
-
-<!-- NEW STORY MODAL -->
-<div class="modal fade" id="story-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- LOGIN MODAL -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form action="/stories" method="POST">
+      <form action="/login" method="POST">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">New Story</h4>
+          <h4 class="modal-title" id="myModalLabel">Login</h4>
         </div>
         <div class="modal-body">
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <input name="location" id="location" type="text" class="form-control col-md-3" placeholder="Location">
+              <label for="inputUsername" class="col-md-2 text-center">Username</label>
+              <input name="username" type="text" class="form-control col-md-3" id="inputUsername">
             </div>
           </div>
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <select name="prompt" id="selected-prompt">
-                <option value="">Choose your own prompt</option>
-                <option value="prompt1">Where are you at in life?</option>
-                <option value="prompt2">What has been your biggest regret?</option>
-                <option value="prompt3">Who are you?</option>
-                <option value="prompt4">Where do you see yourself in 5 years?</option>
-                <option value="prompt5">What are you currently struggling with?</option>
-              </select>
+              <label for="inputPassword" class="col-md-2 text-center">Password</label>
+              <input name="password" type="password" class="form-control col-md-3" id="inputPassword">
             </div>
           </div>
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <textarea name="anecdote" class="form-control col-md-3" placeholder="Tell us your story."></textarea>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <input type="file" id="file_input"/>
-              <input type="hidden" id="image_url" name="image" value="/public/default.jpg">
+              <input type="checkbox"> Remember me
             </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="reset" class="btn btn-default">Reset</button>
-          <button type="submit" id="story-submit-btn" class="btn btn-primary">Submit</button>
+          <button type="submit" id="login-submit-btn" class="btn btn-primary">Sign in</button>
         </div>
       </form>
     </div>
   </div>
 </div>
 
-<!-- VIEW STORY MODAL -->
-{{#each stories}}
-<div class="modal fade" id="story-modal-view-{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- SIGNUP MODAL -->
+<div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form action="/stories/{{_id}}" method="GET">
+      <form action="/users" method="POST">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">View Your Story</h4>
+          <h4 class="modal-title" id="myModalLabel">Signup</h4>
         </div>
         <div class="modal-body">
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              {{location}} | {{date}}
+              <label for="inputUsername" class="col-md-2 text-center">Username</label>
+              <input name="username" type="text" class="form-control col-md-3">
             </div>
           </div>
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              {{anecdote}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              {{image}}
+              <label for="inputPassword" class="col-md-2 text-center">Password</label>
+              <input name="password" type="password" class="form-control col-md-3">
             </div>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" id="signup-submit-btn" class="btn btn-primary">Submit</button>
         </div>
       </form>
     </div>
   </div>
 </div>
-{{/each}}
 
-<!-- EDIT STORY MODAL --> 
-{{#each stories}}
-<div class="modal fade" id="story-modal-edit-{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <form method="POST" action="/stories/{{_id}}?_method=PUT">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Edit Your Story</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <input name="location" id="location" type="text" class="form-control col-md-3" value="{{location}}">
-              <input type="hidden" data-id="{{_id}}">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <select name="prompt" id="selected-prompt" value="{{prompt}}">
-                <option value="">Choose your prompt</option>
-                <option value="prompt1">Where are you at in life?</option>
-                <option value="prompt2">What has been your biggest regret?</option>
-                <option value="prompt3">Who are you?</option>
-                <option value="prompt4">Where do you see yourself in 5 years?</option>
-                <option value="prompt5">What are you currently struggling with?</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <label for="anecdote">Tell us your story:</label>
-              <textarea name="anecdote" class="form-control col-md-3">{{anecdote}}</textarea>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <label for="image" class="col-md-2 text-center">Insert an image:</label>
-              <input name="image" class="form-control col-md-3" value="{{image}}">
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="reset" class="btn btn-default">Reset</button>
-          <button type="submit" class="btn btn-primary">Update</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-{{/each}}
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEhzbl8dG3D4RxWLxf8LQNB989kAy2QwE"></script> 
+<script src="/oms.min.js"></script>
+
+<script src="/chart.js"></script>
+<script src="/map.js"></script>
