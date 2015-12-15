@@ -161,7 +161,6 @@ hr {
 }
 
 /* Story */
-
 #story-logo-container {
   background: #fff;
   height: 300px;
@@ -184,7 +183,7 @@ hr {
 
 #partnership-text {
   font-family: 'Karla', sans-serif;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 400;
   padding-top: 10px;
 }
@@ -195,14 +194,17 @@ hr {
   height: 500px;
 }
 
+#like {
+  font-size: 20px;
+}
+
 /* Autocomplete Input */
 .pac-container {
   z-index: 1051;
 }
 
 /* Dashboard Story */
-
-.entry {
+.entry-stories, .entry-favorites {
   margin: 20px;
 }
 
@@ -222,4 +224,17 @@ hr {
 
 .edit-modal img {
   width: 300px;
+}
+
+textarea {
+  min-height: 150px;
+}
+
+.entry-favorites {
+  width: 400px;
+}
+
+.favorites-img {
+  max-height: 150px;
+  width: auto;
 }

@@ -24,8 +24,8 @@ app.engine('.hbs', handlebars({
   helpers: {
     ifEquals: function(v1, v2, options) {
       return (v1 == v2)
-           ? options.fn(this)
-           : options.inverse(this);
+      ? options.fn(this)
+      : options.inverse(this);
     }
   }
 }));
@@ -57,27 +57,33 @@ mongoose.connect(mongoURI);
 app.get('/', function(req, res) {
   var user_id = req.cookies.loggedInId;
   // Story.find({ user: user_id }).sort('-date').exec(function(err, stories) {
-  Story.find().exec(function(err, stories) {
-    res.render('index', {
-      stories: stories,
-      isUserLoggedIn: (typeof req.cookies.loggedInId !== 'undefined')
+    Story.find().exec(function(err, stories) {
+      res.render('index', {
+        stories: stories,
+        isUserLoggedIn: (typeof req.cookies.loggedInId !== 'undefined')
+      });
     });
   });
-});
 
 app.get('/dashboard', function(req, res) {
   var user_id = req.cookies.loggedInId;
+  var user_stories;
+  var user_faves;
+  var send_data = {};
+  // Get the user's 'favorites' array; save array to var 'user_faves'
   Story.find({ user: user_id }).sort('-date').exec(function(err, stories) {
-    // Story.find({_id: { $in: }}).exec(function() {
-
-    // })
-    res.render('dashboard', {
-      stories: stories,
-      isUserLoggedIn: (typeof req.cookies.loggedInId !== 'undefined')
+    User.find({ _id: user_id }, 'favorites', function(err, data) {
+      var user_faves = data[0].favorites;
+      Story.find({ '_id': { $in: user_faves } }, function(err, faves) {
+        res.render('dashboard', {
+          stories: stories,
+          favorites: faves,
+          isUserLoggedIn: (typeof req.cookies.loggedInId !== 'undefined')
+        })
+      });
     });
   });
 });
-
 
 // ================================================
 // 1. Signup new user
@@ -212,7 +218,23 @@ app.delete('/stories/:id', function(req, res) {
 });
 
 // ================================================
-// 8. Upload image file to AWS
+// 8. Add favorite story
+// ================================================
+app.put('/users', function(req, res) {
+  var user_id = req.cookies.loggedInId;
+  User.findByIdAndUpdate(user_id, {
+    $addToSet: { "favorites": req.body.storyId },
+  }, function(err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send('done');
+    }
+  });
+});
+
+// ================================================
+// 9. Upload image file to AWS
 // ================================================
 app.get('/sign_s3', function(req, res) {
   aws.config.update({

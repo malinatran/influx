@@ -1,4 +1,5 @@
 $(function() {
+
   var map;
 
   map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -29,6 +30,18 @@ $(function() {
     });
     marker.desc = story.innerHTML;
     oms.addMarker(marker);
+  });
+
+  $('body').on('click', '#like', function() {
+    console.log('clicked');
+    $(this).css('color', 'red').css('font-weight', 'bolder');
+    var storyId = $(this).data('id');
+    console.log(storyId);
+    $.ajax({
+      url: "/users", 
+      type: "PUT",
+      data: { storyId: storyId }
+    })
   });
 
 });

@@ -3,7 +3,7 @@
 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#story-modal">Share your story</button>
 
 {{#each stories}}
-<div class="entry">
+<div class="entry-stories">
   <div class="row">
     <div class="col-md-12">
       <div>{{location}}</div>
@@ -17,6 +17,19 @@
         <button class="btn btn-default edit-btn" data-toggle="modal" data-target="#story-modal-edit-{{_id}}">Edit</button>
         <form method="POST" action="/stories/{{_id}}?_method=DELETE"><button type="submit" class="btn btn-default delete-btn" >Delete</button></form>
       </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
+{{#each favorites}}
+<div class="entry-favorites">
+  <div class="row">
+    <div class="col-md-12">
+      <img src="{{image}}" class="favorites-img"/>
+      <div class="favorites-location">{{location}}</div>
+      <div class="favorites-date">{{date}}</div>
+      <div class="favorites-anecdote">{{anecdote}}</div>
     </div>
   </div>
 </div>
