@@ -4,7 +4,9 @@ $(function() {
   map = new google.maps.Map(document.getElementById('map-canvas'), {
     center: {lat: 39.995766, lng: -98.008874},
     zoom: 4,
-    scrollwheel: false
+    scrollwheel: false,
+    streetViewControl: false,
+    mapTypeControl: false
   });
 
   var oms = new OverlappingMarkerSpiderfier(map);

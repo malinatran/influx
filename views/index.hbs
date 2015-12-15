@@ -6,50 +6,133 @@
 </div>
 {{/each}}
 
-
-<div class="container">
+<!-- LOGO, TAGLINE, INTRO PARAGRAPH -->
+<div class="container" id="title-container">
+  <br><br><br>
   <div class="row text-center">
-    <div id="title">in<span id="line">/</span>flux</div>
+    <span id="title">IN<span id="line">/</span><br>FLUX</span>
   </div>
-
+  <br><br><br>
   <div class="row text-center">
-    <div id="tagline">The story of a changing America.</div>
+    <div id="tagline">This is the story of a changing America.<br><span id="subtagline">What's yours?</span></div>
+  </div>
+  <div class="row text-center">
+    <span class="signup-btn" id="main-signup-btn">Signup</span>
+    <span class="login-btn" id="main-login-btn">Login</span>
   </div>
 </div>
 
-<div class="container-fluid">
-  <div id="graph-container"></div>
-</div>
-
+<!-- ABOUT-->
 <div class="container-fluid" style="padding: 0">
-  <div id="quote-container">
+  <div id="about-container">
     <div class="row text-center">
-      <p id="quote">Rather than being feared, America's new diversity—poised to reinvigorate the country at a time when other developed nations are facing advanced aging and population loss—can be celebrated.</p>
+      <img src="/country.png"/ id="country">
     </div>
     <div class="row text-center">
-      <p id="name">William Frey, author of <em>Diversity Explosion: How New Racial Demographics are Remaking America</em></p>
+      <div id="about-title">As a nation, we are transforming.</div>
+    </div>
+    <br><br>
+    <div class="row text-left">
+      <div class="col-md-8 col-md-offset-2">
+        <p id="about">By 2043, minorities will become the majority in the United States. Given waves of immigration and aging Baby Boomers, today's young adult population is the most racially diverse generation in U.S. history. Yet, the Black Lives Matter movement signifies deep racial tensions. We are the most educated, and the most burdened by student debt. Despite the ramifications of the Great Recession, millenials remain the most optimistic generation this country has seen.<br><br> We are a nation redefining what it means to be American, in all its struggle and glory, its breadth and depth, and diversity.<br><br> This is our platform to share our stories.</p>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div id="origin-container" style="width:100%;"></div>
-  </div>
-  <div class="row">
-    <div id="race-container" style="width:100%;"></div>
-  </div>
-  <div class="row">
-    <div id="age-container" style="width:100%;"></div>
-    <button id="age-1990-btn">1990</button>
-    <button id="age-2000-btn">2000</button>
-    <button id="age-2010-btn">2010</button>
+<!-- QUOTE2-->
+<div class="container-fluid" style="padding: 0">
+  <div id="quote-container2">
+    <div class="row text-center">
+      <p id="quote2">Rather than being feared, America's new diversity—poised to reinvigorate the country at a time when other developed nations are facing advanced aging and population loss—can be celebrated.<br><span class="break"><hr></span></p>
+    </div>
+    <div class="row text-center">
+      <p id="name2">William Frey, author of <em>Diversity Explosion: How New Racial Demographics are Remaking America</em></p>
+    </div>
   </div>
 </div>
 
+<!-- DATA CAROUSEL -->
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <div id="origin-container"></div>
+    </div>
+    <div class="item">
+      <div id="race-container"></div>
+    </div>
+    <div class="item">
+      <div id="age-container">
+      </div>
+      <div id="age-btn-container">
+        <button id="age-1990-btn">1990</button>
+        <button id="age-2000-btn">2000</button>
+        <button id="age-2010-btn">2010</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<!-- DATA ANALYSIS -->
+<div class="container-fluid" style="padding: 0">
+  <div id="data-analysis-container">
+    <div class="row text-center">
+      <div id="analysis-title">America by the numbers.</div>
+    </div>
+    <br><br>
+    <div class="row text-left">
+      <div class="col-md-8 col-md-offset-2">
+        <p id="analysis-text">Lorem ipsum dolor sit amet, id pellentesque nunc, vehicula integer, vel curabitur facilisis ullamcorper. Nulla nunc integer vitae est molestie tempus. Tellus pretium fames, mattis vel quam erat, ut est, massa cursus eu amet convallis sit, at id scelerisque in rutrum dictum. Nec urna a urna quis, phasellus eget sed vehicula, fermentum fusce elit in justo condimentum, vehicula nullam. In sagittis pretium parturient gravida ipsum, massa morbi nisi dignissim, habitasse nulla vel, mauris ipsum id mauris ante amet mauris, nunc nec.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY HEADER -->
+<div class="container-fluid" id="story-logo-container" style="padding: 0">
+  <div class="row text-center">
+    <p id="story-logo">HUMANS OF AMERICA</p>
+    <img src="/stories.png" id="stories-logo"/>
+  </div>
+  <div class="row text-center">
+    <p id="partnership-text">In partnership with Humans of New York</p>
+  </div>
+</div>
+
+<!-- GOOGLE MAP FOR STORIES -->
 <div class="container-fluid">
   <div class="row">
     <div id="map-canvas"></div>
+  </div>
+</div>
+
+<!-- QUOTE1 -->
+<div class="container-fluid" style="padding: 0">
+  <div id="quote-container1">
+    <div class="row text-center">
+      <p id="quote1">Multiculturalism is being able to see yourself in the person most unlike you.<br><span class="break"><hr></span></p>
+    </div>
+    <div class="row text-center">
+      <p id="name1">Sandra Cisneros</p>
+    </div>
   </div>
 </div>
 

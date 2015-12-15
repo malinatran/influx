@@ -35,14 +35,14 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8">
               <input name="location" class="location form-control col-md-3" type="text">
               <input type="hidden" class="lat" name="latitude">
               <input type="hidden" class="lng" name="longitude">
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8">
               <select name="prompt" id="selected-prompt">
                 <option value="">Choose your own prompt</option>
                 <option value="prompt1">Where are you at in life?</option>
@@ -54,14 +54,14 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8">
               <textarea name="anecdote" class="form-control col-md-3" placeholder="Tell us your story"></textarea>
             </div>
           </div>
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
               <input type="file" class="file_input"/>
-              <input type="hidden" class="image_url" name="image" value="">
+              <input type="hidden" class="image_url" name="image">
             </div>
           </div>
         </div>
@@ -83,22 +83,22 @@
       <form action="/stories/{{_id}}" method="GET">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">View Your Story</h4>
+          <h4 class="modal-title" id="myModalLabel">{{date}}</h4>
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8">
               <strong>{{location}}</strong> | {{date}}
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              {{anecdote}}
+            <div class="col-md-8">
+              <img src="{{image}}"/>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <img src="{{image}}"/>
+            <div class="col-md-12">
+              {{anecdote}}
             </div>
           </div>
         </div>
@@ -119,18 +119,18 @@
       <form method="POST" action="/stories/{{_id}}?_method=PUT">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Edit Your Story</h4>
+          <h4 class="modal-title" id="myModalLabel">{{date}}</h4>
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8">
               <input name="location" class="location form-control col-md-3" type="text" value="{{location}}">
               <input type="hidden" class="lat" name="latitude">
               <input type="hidden" class="lng" name="longitude">
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8">
               <select name="prompt" id="selected-prompt">
                 <option value="">Choose your prompt</option>
                 <option value="prompt1" {{#ifEquals prompt "prompt1"}}selected{{/ifEquals}}>Where are you at in life?</option>
@@ -142,16 +142,16 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <label for="anecdote">Tell us your story:</label>
-              <textarea name="anecdote" class="form-control col-md-3">{{anecdote}}</textarea>
+            <div class="col-md-8">
+              <img src="{{image}}"/>
+              <input type="file" class="file_input" data-story-id="{{_id}}"/>
+              <input type="hidden" class="image_url" name="image" value="{{image}}">
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <img src="{{image}}"/>
-              <input type="file" class="file_input" data-story-id="{{_id}}"/>
-              <input type="hidden" class="image_url" name="image" value="">
+            <div class="col-md-8">
+              <label for="anecdote">Tell us your story:</label>
+              <textarea name="anecdote" class="form-control col-md-3">{{anecdote}}</textarea>
             </div>
           </div>
         </div>

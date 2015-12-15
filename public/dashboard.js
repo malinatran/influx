@@ -41,6 +41,9 @@ $(function() {
 
   window.initMap = function() {
     var $location = $('.location');
+    var options = {
+      componentRestrictions: {country: 'fr'}
+    }
     $location.each(function(i, location) {
       var autocomplete = new google.maps.places.Autocomplete(location);
       autocomplete.addListener('place_changed', function() {

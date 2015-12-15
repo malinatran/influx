@@ -1,5 +1,15 @@
 $(function() { 
 
+  // Work in progress: stylizing tagline
+  // var randLetter = Math.floor((Math.random()*30)+1);
+  // var randColor = Math.floor((Math.random()*3)+1);
+  // var colors = ['#FBAE17', '#0095A3', '#A63E14', '#FBAE17'];
+  // var $text = $('#tagline').text();
+  // var $textSplit = $text.split('');
+  // var $selectedLetter = $textSplit[randLetter];
+  // var selectedColor = colors[randColor];
+  // console.log($selectedLetter);
+
   Highcharts.getOptions().plotOptions.pie.colors = (function () {
     var colors = [],
     base = Highcharts.getOptions().colors[0],
@@ -11,40 +21,46 @@ $(function() {
     return colors;
   }());
 
+  ////////////////////////////////////
+  ///////////// Origin //////////////
+  //////////////////////////////////
+
   $('#origin-container').highcharts({
     chart: {
-      plotBackgroundColor: null,
-      plotBorderWidth: null,
-      plotShadow: false,
-      type: 'pie'
+      type: 'bar'
     },
     title: {
       text: 'Origin'
     },
-    tooltip: {
-      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    xAxis: {
+      categories: ['1990', '2000', '2010']
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: 'Origin'
+      }
+    },
+    legend: {
+      reversed: true
     },
     plotOptions: {
-      pie: {
-        allowPointSelect: true,
-        cursor: 'pointer',
-        dataLabels: {
-          enabled: true,
-          format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-          style: {
-            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-          }
-        }
+      series: {
+        stacking: 'normal'
       }
     },
     series: [{
-      name: 'Orign',
-      data: [
-      { name: 'Native', y: 87.08 },
-      { name: 'Foreign Born', y: 12.92 }
-      ]
+      name: 'Native Born',
+      data: [92.10, 88.95, 87.08]
+    }, {
+      name: 'Foreign Born',
+      data: [7.90, 11.05, 12.92]
     }]
   });
+
+  ////////////////////////////////////
+  //////// Race + Ethnicity /////////
+  //////////////////////////////////
 
   $('#race-container').highcharts({
     chart: {
@@ -108,6 +124,10 @@ $(function() {
     }]
   });
 
+  ////////////////////////////////////
+  ////////////// Age ////////////////
+  //////////////////////////////////
+
   var ageChart = $('#age-container').highcharts({
     chart: {
       plotBackgroundColor: null,
@@ -155,7 +175,6 @@ $(function() {
      7.54, 21.30, 7.69, 25.33, 17.14, 8.49, 11.28, 1.21
      ], true);
   });
-
 
   $('#age-2000-btn').on('click', function(e) {
     ageChart.highcharts().setTitle({text: 'Age (2000)'});

@@ -68,6 +68,9 @@ app.get('/', function(req, res) {
 app.get('/dashboard', function(req, res) {
   var user_id = req.cookies.loggedInId;
   Story.find({ user: user_id }).sort('-date').exec(function(err, stories) {
+    // Story.find({_id: { $in: }}).exec(function() {
+
+    // })
     res.render('dashboard', {
       stories: stories,
       isUserLoggedIn: (typeof req.cookies.loggedInId !== 'undefined')
@@ -131,12 +134,12 @@ app.post('/stories', function(req, res) {
   date = moment(req.body.updated_at).format("MMM Do, YYYY");
   var story = new Story({
     date: date,
-    location: req.body.location,
+    location: req.body.location.replace(", United States", ""),
     latitude: req.body.latitude,
     longitude: req.body.longitude,
     prompt: req.body.prompt, 
     anecdote: req.body.anecdote,
-    image: req.body.image,
+    image: req.body.image || '/default.jpg',
     user: req.cookies.loggedInId
   });
   story.save(function(err) {
@@ -155,7 +158,7 @@ app.post('/stories', function(req, res) {
 app.get('/stories', function(req, res) {
   Story.findById({ _id: req.body.id }, {
     date: date,
-    location: req.body.location,
+    location: req.body.location.replace(", United States", ""),
     latitude: req.body.latitude,
     longitude: req.body.longitude,
     prompt: req.body.prompt, 
@@ -178,7 +181,7 @@ app.put('/stories/:id', function(req, res) {
   date = moment(req.body.updated_at).format("MMM Do, YYYY");
   Story.findOneAndUpdate({ _id: req.params.id }, {
     date: date,
-    location: req.body.location,
+    location: req.body.location.replace(", United States", ""),
     latitude: req.body.latitude,
     longitude: req.body.longitude,
     prompt: req.body.prompt, 
