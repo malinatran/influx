@@ -201,6 +201,7 @@ hr {
 }
 
 /* Dashboard Story */
+
 .entry {
   margin: 20px;
 }
@@ -213,9 +214,12 @@ hr {
   display: inline-block;
 }
 
-/* Modal */
-.modal img {
+.view-modal img {
   width: 550px;
   margin-bottom: 20px;
   margin-top: 20px;
+}
+
+.edit-modal img {
+  width: 300px;
 }

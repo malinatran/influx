@@ -142,6 +142,7 @@ app.post('/stories', function(req, res) {
     image: req.body.image || '/default.jpg',
     user: req.cookies.loggedInId
   });
+  console.log(story);
   story.save(function(err) {
     if (err) {
       console.log(err);

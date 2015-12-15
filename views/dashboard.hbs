@@ -35,14 +35,14 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-8">
-              <input name="location" class="location form-control col-md-3" type="text">
+            <div class="col-md-12">
+              <input name="location" class="location form-control" type="text">
               <input type="hidden" class="lat" name="latitude">
               <input type="hidden" class="lng" name="longitude">
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <select name="prompt" id="selected-prompt">
                 <option value="">Choose your own prompt</option>
                 <option value="prompt1">Where are you at in life?</option>
@@ -54,12 +54,12 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <textarea name="anecdote" class="form-control col-md-3" placeholder="Tell us your story"></textarea>
+            <div class="col-md-12">
+              <textarea name="anecdote" class="form-control" placeholder="Tell us your story"></textarea>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12">
               <input type="file" class="file_input"/>
               <input type="hidden" class="image_url" name="image">
             </div>
@@ -77,7 +77,7 @@
 
 <!-- VIEW STORY MODAL -->
 {{#each stories}}
-<div class="modal fade" id="story-modal-view-{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade view-modal" id="story-modal-view-{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <form action="/stories/{{_id}}" method="GET">
@@ -113,7 +113,7 @@
 
 <!-- EDIT STORY MODAL --> 
 {{#each stories}}
-<div class="modal fade" id="story-modal-edit-{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade edit-modal" id="story-modal-edit-{{_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <form method="POST" action="/stories/{{_id}}?_method=PUT">
@@ -123,14 +123,21 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-8">
-              <input name="location" class="location form-control col-md-3" type="text" value="{{location}}">
+            <div class="col-md-12">
+              <img src="{{image}}"/>
+              <input type="file" class="file_input" data-story-id="{{_id}}"/>
+              <input type="hidden" class="image_url" name="image" value="{{image}}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <input name="location" class="location form-control" type="text" value="{{location}}">
               <input type="hidden" class="lat" name="latitude">
               <input type="hidden" class="lng" name="longitude">
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <select name="prompt" id="selected-prompt">
                 <option value="">Choose your prompt</option>
                 <option value="prompt1" {{#ifEquals prompt "prompt1"}}selected{{/ifEquals}}>Where are you at in life?</option>
@@ -142,16 +149,8 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <img src="{{image}}"/>
-              <input type="file" class="file_input" data-story-id="{{_id}}"/>
-              <input type="hidden" class="image_url" name="image" value="{{image}}">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-8">
-              <label for="anecdote">Tell us your story:</label>
-              <textarea name="anecdote" class="form-control col-md-3">{{anecdote}}</textarea>
+            <div class="col-md-12">
+              <textarea name="anecdote" class="form-control">{{anecdote}}</textarea>
             </div>
           </div>
         </div>
