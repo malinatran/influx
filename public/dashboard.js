@@ -39,6 +39,8 @@ $(function() {
     });
   };
 
+  // Autcomplete (Google Places API)
+
   window.initMap = function() {
     var $location = $('.location');
     var options = {
@@ -59,5 +61,6 @@ $(function() {
       }
     });
   };
+
 
 });
