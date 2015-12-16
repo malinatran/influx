@@ -1,5 +1,5 @@
 html, body {
-  background: url(http://api.thumbr.it/whitenoise-361x370.png?background=ddddddff&noise=000000&density=15&opacity=15);
+  background-color: white;
   font-family: 'Karla', sans-serif;
 }
 
@@ -8,6 +8,10 @@ img {
 }
 
 /* Navbar */
+.navbar {
+  margin: 0;
+}
+
 #nav-line {
   color: #0095A3;
 }
@@ -19,12 +23,16 @@ img {
   font-size: 80px;
   font-weight: 700;
   line-height: 2em;
+  margin-top: 200px;
   padding: 10px;
   text-align: left;
 }
 
 #title-container{
-  height: 710px;
+  background: url(http://api.thumbr.it/whitenoise-361x370.png?background=ddddddff&noise=000000&density=15&opacity=15);
+  height: 800px;
+  padding-top: 30px;
+  top: 0;
 }
 
 #line {
@@ -91,14 +99,14 @@ img {
 }
 
 /* Quote */
-#quote-container1 {
+#quote-container1, #quote-container2 {
   background-color: #FBAE17;
   padding: 50px;
 }
 
-#quote-container2 {
-  background-color: #FBAE17;
-  padding: 50px;
+#quote-container3 {
+  padding: 100px 50px 20px 50px;
+  margin-bottom: 50px;
 }
 
 #quote1, #quote2 {
@@ -108,7 +116,14 @@ img {
   font-weight: 400;
 }
 
-#name1, #name2 {
+#quote3 {
+  color: #FBAE17;
+  font-family: 'Karla', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+#name1, #name2, #name3 {
   font-size: 16px;
 }
 
@@ -120,13 +135,23 @@ hr {
 }
 
 /* Data Carousel */
-.carousel {
-  interval: false;
+#carousel-example-generic {
+  height: 500px;
 }
 
 .carousel-control.left, 
 .carousel-control.right {
   background-image: none;
+}
+
+.carousel-inner {
+  margin-top: 60px;
+}
+
+.caption-text {
+  font-family: 'Karla', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
 }
 
 #origin-container, #race-container, #age-container {
@@ -163,7 +188,7 @@ hr {
 /* Story */
 #story-logo-container {
   background: #fff;
-  height: 300px;
+  margin-bottom: 100px;
 }
 
 #story-logo {
@@ -172,7 +197,7 @@ hr {
   font-size: 55px;
   font-weight: 700;
   margin-bottom: -30px;
-  margin-top: 80px;
+  margin-top: 100px;
   vertical-align: center;
 }
 
@@ -182,10 +207,12 @@ hr {
 }
 
 #partnership-text {
+  border-bottom: 1px solid #B3461A;
   font-family: 'Karla', sans-serif;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 400;
-  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-top: 20px;
 }
 
 /* Map */
@@ -204,12 +231,65 @@ hr {
 }
 
 /* Dashboard Story */
-.entry-stories, .entry-favorites {
-  margin: 20px;
+#my-stories {
+  font-family: 'Karla', sans-serif;
+  font-size: 20px;
+  border: 5px solid #0095A3;
+  border-bottom: none;
+  margin-left: 15px;
+  padding: 10px;
+}
+
+#my-favorites {
+  font-family: 'Karla', sans-serif;
+  font-size: 20px;
+  border: 5px solid #0095A3;
+  border-bottom: none;
+  margin-left: 15px;
+  padding: 10px;
+}
+
+#stories-container, #favorites-container {
+  margin: 30px auto;
+}
+
+#stories-subcontainer, #favorites-subcontainer {
+  border-top: 5px solid #0095A3;
+  margin-left: 15px;
+  margin-top: 6px;
+  padding-left: 0;
+}
+
+#share-story-btn {
+  float: right;
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 10%;
+}
+
+.entry-stories {
+  float: left;
+  padding: 10px;
+  margin: 10px;
+}
+
+.entry-favorites {
+  float: left;
+  margin: 10px;
 }
 
 .view-btn, .edit-btn, .delete-btn {
+  color: black;
   margin-right: 10px;
+}
+
+.glyphicon-eye-open, .glyphicon-pencil, .glyphicon-trash {
+  padding-top: 5px;
+}
+
+.button-container {
+  padding-top: 10px;
 }
 
 .button-container form {

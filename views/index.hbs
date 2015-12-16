@@ -1,15 +1,14 @@
 {{#each stories}}
 <div class="google-map-stories hidden" data-lat="{{latitude}}" data-lng="{{longitude}}">
-  <h5>{{location}}</h5>
+  <h5><span id="like" data-id="{{_id}}" class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;{{location}}</h5>
   <img src="{{image}}"/>
   <p>{{anecdote}}</p>
-  <p id="like" data-id="{{_id}}">&#9825</p>
 </div>
 {{/each}}
 
 <!-- LOGO, TAGLINE, INTRO PARAGRAPH -->
-<div class="container" id="title-container">
-  <br><br><br>
+<div class="container-fluid" id="title-container">
+  <br><br><br><br><br><br>
   <div class="row text-center">
     <span id="title">IN<span id="line">/</span><br>FLUX</span>
   </div>
@@ -71,9 +70,8 @@
       <div id="race-container"></div>
     </div>
     <div class="item">
-      <div id="age-container">
-      </div>
-      <div id="age-btn-container">
+      <div id="age-container"></div>
+      <div id="age-btn-container" class="row text-center">
         <button id="age-1990-btn">1990</button>
         <button id="age-2000-btn">2000</button>
         <button id="age-2010-btn">2010</button>
@@ -114,7 +112,7 @@
     <img src="/stories.png" id="stories-logo"/>
   </div>
   <div class="row text-center">
-    <p id="partnership-text">In partnership with Humans of New York</p>
+    <span id="partnership-text">In partnership with Humans of New York</span>
   </div>
 </div>
 

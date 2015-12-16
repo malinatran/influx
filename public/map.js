@@ -143,7 +143,7 @@ $(function() {
     var lng = $(story).data('lng');
     var marker = new google.maps.Marker ({
       map: map,
-      icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+      icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
       position: {lat: lat, lng: lng}
     });
     marker.desc = story.innerHTML;

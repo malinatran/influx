@@ -1,39 +1,67 @@
 {{#isUserLoggedIn}}
 
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#story-modal">Share your story</button>
-
-{{#each stories}}
-<div class="entry-stories">
-  <div class="row">
-    <div class="col-md-12">
-      <div>{{location}}</div>
-      <div>{{date}}</div>
+<div class="container-fluid" style="padding: 0">
+  <div id="quote-container3">
+    <div class="row text-center">
+      <p id="quote3">Stories make us more alive, more human, more courageous, more loving.<br><span class="break"><hr></span></p>
+    </div>
+    <div class="row text-center">
+      <p id="name3">Madeleine L’Engle</p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6">
+</div>
+
+<button type="button" class="btn btn-default" id="share-story-btn" data-toggle="modal" data-target="#story-modal"><span class="glyphicon glyphicon-plus"></span>&nbsp; SHARE YOUR STORY</button>
+{{!-- CONTAINER --}}
+<div id="stories-container" class="container">
+  {{!-- TITLE --}}
+  <span id="my-stories">My Stories</span>
+  {{!-- SUBCONTAINER --}}
+  <div id="stories-subcontainer" class="row text-left">
+
+    {{#each stories}}
+    <div class="entry-stories">
+      <div class="entry-text-container">
+        <div><strong>{{location}}</strong></div>
+        <div>{{date}}</div>
+      </div> {{!-- entry-text-container --}}
       <div class="button-container">
-        <button class="btn btn-default view-btn" data-toggle="modal" data-target="#story-modal-view-{{_id}}">View</button>
-        <button class="btn btn-default edit-btn" data-toggle="modal" data-target="#story-modal-edit-{{_id}}">Edit</button>
-        <form method="POST" action="/stories/{{_id}}?_method=DELETE"><button type="submit" class="btn btn-default delete-btn" >Delete</button></form>
-      </div>
-    </div>
-  </div>
-</div>
-{{/each}}
+        <button class="btn btn-default view-btn" ><span class="glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#story-modal-view-{{_id}}"></span></button>
+        <button class="btn btn-default edit-btn" data-toggle="modal" data-target="#story-modal-edit-{{_id}}"><span class="glyphicon glyphicon-pencil"></span></button>
+        <form method="POST" action="/stories/{{_id}}?_method=DELETE"><button type="submit" class="btn btn-default delete-btn"><span class="glyphicon glyphicon-trash"></span></button></form>
+      </div> {{!-- button-container --}}
+    </div> {{!-- entry-stories --}}
+    {{/each}}
 
-{{#each favorites}}
-<div class="entry-favorites">
-  <div class="row">
-    <div class="col-md-12">
-      <img src="{{image}}" class="favorites-img"/>
-      <div class="favorites-location">{{location}}</div>
-      <div class="favorites-date">{{date}}</div>
-      <div class="favorites-anecdote">{{anecdote}}</div>
-    </div>
+</div>
+</div>
+
+{{!-- CONTAINER --}}
+<div id="favorites-container" class="container">
+  {{!-- TITLE --}}
+  <span id="my-favorites"><span class="glyphicon glyphicon-heart"></span>&nbsp;'d Stories</span>
+  {{!-- SUBCONTAINER --}}
+  <div id="favorites-subcontainer" class="row text-center">
+
+    {{#each favorites}}
+    <div class="row">
+      <div class="entry-favorites col-md-12">
+        {{!-- <div class="col-md-12"> --}}
+          <div class="col-md-4">
+            <img src="{{image}}" class="favorites-img"/>
+          </div>
+          <div class="col-md-8">
+            <div class="favorites-date">{{date}}</div>
+            <div class="favorites-location">{{location}}</div>
+            <div class="favorites-anecdote">{{anecdote}}</div>
+          </div>
+        </div>
+      </div>
+    {{!-- </div> --}}
+    {{/each}}
+
   </div>
 </div>
-{{/each}}
 
 {{/isUserLoggedIn}}
 
@@ -57,7 +85,7 @@
           <div class="row">
             <div class="col-md-12">
               <select name="prompt" id="selected-prompt">
-                <option value="">Choose your own prompt</option>
+                <option value=""></option>
                 <option value="prompt1">Where are you at in life?</option>
                 <option value="prompt2">What has been your biggest regret?</option>
                 <option value="prompt3">Who are you?</option>

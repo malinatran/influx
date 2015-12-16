@@ -10,6 +10,12 @@ $(function() {
   // var selectedColor = colors[randColor];
   // console.log($selectedLetter);
 
+  $('.carousel').each(function(){
+    $(this).carousel({
+      interval: false
+    });
+  });
+
   Highcharts.getOptions().plotOptions.pie.colors = (function () {
     var colors = [],
     base = Highcharts.getOptions().colors[0],
@@ -30,7 +36,7 @@ $(function() {
       type: 'bar'
     },
     title: {
-      text: 'Origin'
+      text: 'More foreign-born Americans'
     },
     xAxis: {
       categories: ['1990', '2000', '2010']
@@ -38,7 +44,7 @@ $(function() {
     yAxis: {
       min: 0,
       title: {
-        text: 'Origin'
+        text: ''
       }
     },
     legend: {
@@ -67,11 +73,11 @@ $(function() {
       type: 'bar'
     },
     title: {
-      text: 'Race and Ethnicity'
+      text: 'A growing population of Asians and Latinos'
     },
-    subtitle: {
-      text: 'Source: U.S. Census Bureau'
-    },
+    // subtitle: {
+    //   text: 'Source: U.S. Census Bureau'
+    // },
     xAxis: {
       categories: ['White', 'Black or African-American', 'American Indian & Alaska Native', 'Asian', 'Native Hawaiian & Other Pacific Islander', 'Some Other Race', 'Two or More Races', 'Hispanic or Latino' ],
       title: {
@@ -136,7 +142,7 @@ $(function() {
       type: 'pie'
     },
     title: {
-      text: 'Age (1990)'
+      text: 'A rise in the aging population'
     },
     tooltip: {
       pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

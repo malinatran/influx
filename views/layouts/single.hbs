@@ -11,21 +11,19 @@
 
 <body>
 
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-      <div>
         <ul class="nav navbar-nav navbar-right">
           {{^isUserLoggedIn}}
             <li><a href="#" class="login-btn" data-toggle="modal" data-target="#login-modal">Login</a></li>
-            <li><a href="" class="signup-btn" data-toggle="modal" data-target="#signup-modal">Signup</a></li>
+            <li><a href="#" class="signup-btn" data-toggle="modal" data-target="#signup-modal">Signup</a></li>
           {{/isUserLoggedIn}}
           {{#isUserLoggedIn}}
-            <li><a href="/logout" id="logout-btn">Logout</a></li>
-            <li><a href="/dashboard" class="dashboard-btn">Dashboard</a></li>
             <li><a href="/"><strong>IN<span id="nav-line">/</span>FLUX</strong></a></li>
+            <li><a href="/dashboard" class="dashboard-btn">Dashboard</a></li>
+            <li><a href="/logout" id="logout-btn">Logout</a></li>
           {{/isUserLoggedIn}}
         </ul>
-      </div>
     </div>
   </nav>
 
