@@ -18,14 +18,219 @@ $(function() {
 
   Highcharts.getOptions().plotOptions.pie.colors = (function () {
     var colors = [],
-    base = Highcharts.getOptions().colors[0],
+    base = '#26767d',
     i;
 
-    for (i = 0; i < 10; i += 1) {
+    for (i = 7; i >= 0; i--) {
       colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
     }
+
     return colors;
   }());
+
+  Highcharts.createElement('link', {
+   rel: 'stylesheet',
+   type: 'text/css'
+  }, null, document.getElementsByTagName('head')[0]);
+
+  Highcharts.theme = {
+     colors: ["#d3d3d3", "#0095A3"],
+     chart: {
+        backgroundColor: {
+           linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+           stops: [
+              [0, '#FFF'],
+              [1, '#FFF']
+           ]
+        },
+        style: {
+           fontFamily: "'Karla', sans-serif"
+        },
+        plotBorderColor: '#606063'
+     },
+     title: {
+        style: {
+           color: '#000',
+           fontSize: '30px'
+        }
+     },
+     subtitle: {
+        style: {
+           color: '#000',
+        }
+     },
+     xAxis: {
+        gridLineColor: '#000',
+        labels: {
+           style: {
+              color: '#000'
+           }
+        },
+        lineColor: '#707073',
+        minorGridLineColor: '#505053',
+        tickColor: '#707073',
+        title: {
+           style: {
+              color: '#A0A0A3'
+
+           }
+        }
+     },
+     yAxis: {
+        gridLineColor: '#707073',
+        labels: {
+           style: {
+              color: '#000'
+           }
+        },
+        lineColor: '#707073',
+        minorGridLineColor: '#505053',
+        tickColor: '#707073',
+        tickWidth: 1,
+        title: {
+           style: {
+              color: '#A0A0A3'
+           }
+        }
+     },
+     tooltip: {
+        backgroundColor: '#FFF',
+        style: {
+           color: '#000'
+        }
+     },
+     plotOptions: {
+        series: {
+           dataLabels: {
+              color: '#B0B0B3'
+           },
+           marker: {
+              lineColor: '#333'
+           }
+        },
+        boxplot: {
+           fillColor: '#505053'
+        },
+        candlestick: {
+           lineColor: 'white'
+        },
+        errorbar: {
+           color: 'white'
+        }
+     },
+     legend: {
+        itemStyle: {
+           color: '#000'
+        },
+        itemHoverStyle: {
+           color: '#000'
+        },
+        itemHiddenStyle: {
+           color: '#606063'
+        }
+     },
+     credits: {
+        style: {
+           color: '#FFF'
+        }
+     },
+     labels: {
+        style: {
+           color: '#FFF'
+        }
+     },
+
+     drilldown: {
+        activeAxisLabelStyle: {
+           color: '#F0F0F3'
+        },
+        activeDataLabelStyle: {
+           color: '#F0F0F3'
+        }
+     },
+
+     navigation: {
+        buttonOptions: {
+           symbolStroke: '#DDDDDD',
+           theme: {
+              fill: '#505053'
+           }
+        }
+     },
+
+     // scroll charts
+     rangeSelector: {
+        buttonTheme: {
+           fill: '#505053',
+           stroke: '#000000',
+           style: {
+              color: '#CCC'
+           },
+           states: {
+              hover: {
+                 fill: '#707073',
+                 stroke: '#000000',
+                 style: {
+                    color: 'white'
+                 }
+              },
+              select: {
+                 fill: '#000003',
+                 stroke: '#000000',
+                 style: {
+                    color: 'white'
+                 }
+              }
+           }
+        },
+        inputBoxBorderColor: '#505053',
+        inputStyle: {
+           backgroundColor: '#333',
+           color: 'silver'
+        },
+        labelStyle: {
+           color: 'silver'
+        }
+     },
+
+     navigator: {
+        handles: {
+           backgroundColor: '#666',
+           borderColor: '#AAA'
+        },
+        outlineColor: '#CCC',
+        maskFill: 'rgba(255,255,255,0.1)',
+        series: {
+           color: '#7798BF',
+           lineColor: '#A6C7ED'
+        },
+        xAxis: {
+           gridLineColor: '#505053'
+        }
+     },
+
+     scrollbar: {
+        barBackgroundColor: '#808083',
+        barBorderColor: '#808083',
+        buttonArrowColor: '#CCC',
+        buttonBackgroundColor: '#606063',
+        buttonBorderColor: '#606063',
+        rifleColor: '#FFF',
+        trackBackgroundColor: '#404043',
+        trackBorderColor: '#404043'
+     },
+
+     // special colors for some of the
+     legendBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+     background2: '#505053',
+     dataLabelsColor: '#B0B0B3',
+     textColor: '#C0C0C0',
+     contrastTextColor: '#F0F0F3',
+     maskColor: 'rgba(255,255,255,0.3)'
+  };
+
+  // Apply the theme
+  Highcharts.setOptions(Highcharts.theme);
 
   ////////////////////////////////////
   ///////////// Origin //////////////
@@ -36,7 +241,8 @@ $(function() {
       type: 'bar'
     },
     title: {
-      text: 'More foreign-born Americans'
+      text: 'In pursuit of the American Dream',
+      fontSize: '30px'
     },
     xAxis: {
       categories: ['1990', '2000', '2010']
@@ -64,6 +270,213 @@ $(function() {
     }]
   });
 
+  Highcharts.createElement('link', {
+   rel: 'stylesheet',
+   type: 'text/css'
+  }, null, document.getElementsByTagName('head')[0]);
+
+  Highcharts.theme = {
+     colors: ["#0095A3", "#FBAE17", "#B3461A"],
+     chart: { 
+        backgroundColor: {
+           linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+           stops: [
+              [0, '#FFF'],
+              [1, '#FFF']
+           ]
+        },
+        style: {
+           fontFamily: "'Karla', sans-serif"
+        },
+        plotBorderColor: '#606063'
+     },
+     title: {
+        style: {
+           color: '#000',
+           fontSize: '30px'
+        }
+     },
+     subtitle: {
+        style: {
+           color: '#000',
+        }
+     },
+     xAxis: {
+        gridLineColor: '#000',
+        labels: {
+           style: {
+              color: '#000',
+              fontSize: '16px'
+           }
+        },
+        lineColor: '#707073',
+        minorGridLineColor: '#505053',
+        tickColor: '#707073',
+        title: {
+           style: {
+              color: '#A0A0A3'
+
+           }
+        }
+     },
+     yAxis: {
+        gridLineColor: '#000',
+        labels: {
+           style: {
+              color: '#000',
+              fontSize: '16px'
+           }
+        },
+        lineColor: '#707073',
+        minorGridLineColor: '#505053',
+        tickColor: '#707073',
+        tickWidth: 1,
+        title: {
+           style: {
+              color: '#A0A0A3'
+           }
+        }
+     },
+     tooltip: {
+        backgroundColor: '#FFF',
+        style: {
+           color: '#000'
+        }
+     },
+     plotOptions: {
+        series: {
+           dataLabels: {
+              color: '#000'
+           },
+           marker: {
+              lineColor: '#000'
+           }
+        },
+        boxplot: {
+           fillColor: '#505053'
+        },
+        candlestick: {
+           lineColor: 'white'
+        },
+        errorbar: {
+           color: 'white'
+        }
+     },
+     legend: {
+        itemStyle: {
+           color: '#000',
+           fontSize: '12px'
+        },
+        itemHoverStyle: {
+           color: '#FFF'
+        },
+        itemHiddenStyle: {
+           color: '#606063'
+        }
+     },
+     credits: {
+        style: {
+           color: '#FFF'
+        }
+     },
+     labels: {
+        style: {
+           color: '#707073'
+        }
+     },
+
+     drilldown: {
+        activeAxisLabelStyle: {
+           color: '#F0F0F3'
+        },
+        activeDataLabelStyle: {
+           color: '#F0F0F3'
+        }
+     },
+
+     navigation: {
+        buttonOptions: {
+           symbolStroke: '#DDDDDD',
+           theme: {
+              fill: '#505053'
+           }
+        }
+     },
+
+     // scroll charts
+     rangeSelector: {
+        buttonTheme: {
+           fill: '#505053',
+           stroke: '#000000',
+           style: {
+              color: '#CCC'
+           },
+           states: {
+              hover: {
+                 fill: '#707073',
+                 stroke: '#000000',
+                 style: {
+                    color: 'white'
+                 }
+              },
+              select: {
+                 fill: '#000003',
+                 stroke: '#000000',
+                 style: {
+                    color: 'white'
+                 }
+              }
+           }
+        },
+        inputBoxBorderColor: '#505053',
+        inputStyle: {
+           backgroundColor: '#333',
+           color: 'silver'
+        },
+        labelStyle: {
+           color: 'silver'
+        }
+     },
+
+     navigator: {
+        handles: {
+           backgroundColor: '#666',
+           borderColor: '#AAA'
+        },
+        outlineColor: '#CCC',
+        maskFill: 'rgba(255,255,255,0.1)',
+        series: {
+           color: '#7798BF',
+           lineColor: '#A6C7ED'
+        },
+        xAxis: {
+           gridLineColor: '#505053'
+        }
+     },
+
+     scrollbar: {
+        barBackgroundColor: '#808083',
+        barBorderColor: '#808083',
+        buttonArrowColor: '#CCC',
+        buttonBackgroundColor: '#606063',
+        buttonBorderColor: '#606063',
+        rifleColor: '#FFF',
+        trackBackgroundColor: '#404043',
+        trackBorderColor: '#404043'
+     },
+
+     // special colors for some of the
+     legendBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+     background2: '#505053',
+     dataLabelsColor: '#B0B0B3',
+     textColor: '#C0C0C0',
+     contrastTextColor: '#F0F0F3',
+     maskColor: 'rgba(255,255,255,0.3)'
+  };
+
+  // Apply the theme
+  Highcharts.setOptions(Highcharts.theme);
+
   ////////////////////////////////////
   //////// Race + Ethnicity /////////
   //////////////////////////////////
@@ -73,13 +486,13 @@ $(function() {
       type: 'bar'
     },
     title: {
-      text: 'A growing population of Asians and Latinos'
+      text: 'Moving toward a majority minority population'
     },
     // subtitle: {
     //   text: 'Source: U.S. Census Bureau'
     // },
     xAxis: {
-      categories: ['White', 'Black or African-American', 'American Indian & Alaska Native', 'Asian', 'Native Hawaiian & Other Pacific Islander', 'Some Other Race', 'Two or More Races', 'Hispanic or Latino' ],
+      categories: ['White', 'Black or African-American', 'American Indian & Alaska Native', 'Asian', 'Native Hawaiian & Pacific Islander', 'Some Other Race', 'Two or More Races', 'Hispanic or Latino' ],
       title: {
         text: null
       }
@@ -108,12 +521,12 @@ $(function() {
       layout: 'vertical',
       align: 'right',
       verticalAlign: 'top',
-      x: -40,
-      y: 80,
-      floating: true,
+      x: 0,
+      y: 50,
+      floating: false,
       borderWidth: 1,
-      backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-      shadow: true
+      backgroundColor: ('#FFF'),
+      shadow: false
     },
     credits: {
       enabled: false
@@ -129,6 +542,40 @@ $(function() {
       data: [63.75, 12.21, 0.73, 4.69, 0.16, 0.20, 1.93, 16.35]
     }]
   });
+
+  ////////////////////////////////////
+  ////////// Multiracial ////////////
+  //////////////////////////////////
+
+  $('#multiracial-container').highcharts({
+    chart: {
+      type: 'line'
+    },
+    title: {
+      text: 'A more multiracial nation'
+    },
+    xAxis: {
+      categories: ['1970', '1980', '1990', '2000', '2010']
+    },
+    yAxis: {
+      title: {
+        text: ''
+      }
+    },
+    plotOptions: {
+      line: {
+        dataLabels: {
+          enabled: true
+        },
+        enableMouseTracking: false
+      }
+    },
+    series: [{
+      name: '% of children younger than one year old who are multiracial',
+      data: [1, 3, 5, 9, 10]
+    }]
+  });
+
 
   ////////////////////////////////////
   ////////////// Age ////////////////
@@ -176,24 +623,29 @@ $(function() {
   });
 
   $('#age-1990-btn').on('click', function(e) {
-    ageChart.highcharts().setTitle({text: 'Age (1990)'});
+    $('#age-btn-container .active').removeClass('active');
+    $(this).addClass('active');
     ageChart.highcharts().series[0].setData([ 
      7.54, 21.30, 7.69, 25.33, 17.14, 8.49, 11.28, 1.21
      ], true);
   });
 
   $('#age-2000-btn').on('click', function(e) {
-    ageChart.highcharts().setTitle({text: 'Age (2000)'});
+    $('#age-btn-container .active').removeClass('active');
+    $(this).addClass('active');
     ageChart.highcharts().series[0].setData([
       6.81, 21.78, 6.74, 14.18, 29.43, 8.63, 10.93, 1.51
       ], true);
   });
 
   $('#age-2010-btn').on('click', function(e) {
-    ageChart.highcharts().setTitle({text: 'Age (2010)'});
+    $('#age-btn-container .active').removeClass('active');
+    $(this).addClass('active');
     ageChart.highcharts().series[0].setData([
       6.54, 20.43, 6.99, 13.30, 27.88, 11.82, 11.26, 1.78
       ], true);
   });
+
+
 
 });

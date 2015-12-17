@@ -17,8 +17,13 @@
     <div id="tagline">This is the story of a changing America.<br><span id="subtagline">What's yours?</span></div>
   </div>
   <div class="row text-center">
-    <span class="signup-btn" id="main-signup-btn">Signup</span>
-    <span class="login-btn" id="main-login-btn">Login</span>
+    {{^isUserLoggedIn}}
+    <span class="signup-btn" id="main-signup-btn" data-toggle="modal" data-target="#signup-modal">Signup</span>
+    <span class="login-btn" id="main-login-btn" data-toggle="modal" data-target="#login-modal">Login</span>
+    {{/isUserLoggedIn}}
+    {{#isUserLoggedIn}}
+    <a href="/dashboard" id="main-story-btn">Tell a Story</a>
+    {{/isUserLoggedIn}}
   </div>
 </div>
 
@@ -34,7 +39,7 @@
     <br><br>
     <div class="row text-left">
       <div class="col-md-8 col-md-offset-2">
-        <p id="about">By 2043, minorities will become the majority in the United States. Given waves of immigration and aging Baby Boomers, today's young adult population is the most racially diverse generation in U.S. history. Yet, the Black Lives Matter movement signifies deep racial tensions. We are the most educated, and the most burdened by student debt. Despite the ramifications of the Great Recession, millenials remain the most optimistic generation this country has seen.<br><br> We are a nation redefining what it means to be American, in all its struggle and glory, its breadth and depth, and diversity.<br><br> This is our platform to share our stories.</p>
+        <p id="about">By 2043, minorities will become the majority in the United States. Given waves of immigration and aging Baby Boomers, today's young adult population is the most racially diverse generation in U.S. history. Yet, the Black Lives Matter movement signifies deep racial tensions and segregation. We are the most educated generation, and the most burdened by student debt. Despite the ramifications of the Great Recession, millenials remain the most optimistic generation this country has seen.<br><br> We are a nation redefining what it means to be American, in all its struggle and glory, its breadth and depth, and diversity. This is our platform to share our stories.</p>
       </div>
     </div>
   </div>
@@ -64,15 +69,32 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
+      <div id="main-carousel-container" class="container">
+        <div class="row text-center">
+          <div id="analysis-title">America by the numbers.</div>
+        </div>
+        <div id="analysis-line"><hr></div>
+        <br><br>
+        <div class="row text-left">
+          <div class="col-md-8 col-md-offset-2">
+            <p id="analysis-text">Data can provide insights on the state of matters. Here, the U.S. Census Bureau, American Community Survey, and Pew Research Center have collectively shaped the story of a nation that is influx. Data has the power of telling stories, whether they are stories of national trends, projections, or outliers. But stories told by people &mdash; of their background and lived experiences &mdash; is what brings us closer together.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="item">
       <div id="origin-container"></div>
     </div>
     <div class="item">
       <div id="race-container"></div>
     </div>
     <div class="item">
+      <div id="multiracial-container"></div>
+    </div>
+    <div class="item">
       <div id="age-container"></div>
       <div id="age-btn-container" class="row text-center">
-        <button id="age-1990-btn">1990</button>
+        <button id="age-1990-btn" class="active">1990</button>
         <button id="age-2000-btn">2000</button>
         <button id="age-2010-btn">2010</button>
       </div>
@@ -90,17 +112,14 @@
   </a>
 </div>
 
-<!-- DATA ANALYSIS -->
+<!-- QUOTE1 -->
 <div class="container-fluid" style="padding: 0">
-  <div id="data-analysis-container">
+  <div id="quote-container1">
     <div class="row text-center">
-      <div id="analysis-title">America by the numbers.</div>
+      <p id="quote1">Multiculturalism is being able to see yourself in the person most unlike you.<br><span class="break"><hr></span></p>
     </div>
-    <br><br>
-    <div class="row text-left">
-      <div class="col-md-8 col-md-offset-2">
-        <p id="analysis-text">Lorem ipsum dolor sit amet, id pellentesque nunc, vehicula integer, vel curabitur facilisis ullamcorper. Nulla nunc integer vitae est molestie tempus. Tellus pretium fames, mattis vel quam erat, ut est, massa cursus eu amet convallis sit, at id scelerisque in rutrum dictum. Nec urna a urna quis, phasellus eget sed vehicula, fermentum fusce elit in justo condimentum, vehicula nullam. In sagittis pretium parturient gravida ipsum, massa morbi nisi dignissim, habitasse nulla vel, mauris ipsum id mauris ante amet mauris, nunc nec.</p>
-      </div>
+    <div class="row text-center">
+      <p id="name1">Sandra Cisneros</p>
     </div>
   </div>
 </div>
@@ -120,18 +139,6 @@
 <div class="container-fluid">
   <div class="row">
     <div id="map-canvas"></div>
-  </div>
-</div>
-
-<!-- QUOTE1 -->
-<div class="container-fluid" style="padding: 0">
-  <div id="quote-container1">
-    <div class="row text-center">
-      <p id="quote1">Multiculturalism is being able to see yourself in the person most unlike you.<br><span class="break"><hr></span></p>
-    </div>
-    <div class="row text-center">
-      <p id="name1">Sandra Cisneros</p>
-    </div>
   </div>
 </div>
 
@@ -207,6 +214,5 @@
 <script src="//code.highcharts.com/highcharts.js"></script>
 <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDEhzbl8dG3D4RxWLxf8LQNB989kAy2QwE"></script> 
 <script src="/oms.min.js"></script>
-
 <script src="/chart.js"></script>
 <script src="/map.js"></script>

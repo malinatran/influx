@@ -24,7 +24,7 @@ img {
   font-weight: 700;
   line-height: 2em;
   margin-top: 200px;
-  padding: 10px;
+  padding: 10px 20px;
   text-align: left;
 }
 
@@ -38,6 +38,52 @@ img {
 #line {
   color: #0095A3;
   font-weight: 400;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #0095A3;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #0095A3;
+  }
+}
+
+@-webkit-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #0095A3;
+  }
+}
+
+@-ms-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #0095A3;
+  }
+}
+
+@-o-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: #0095A3;
+  }
 }
 
 #tagline {
@@ -53,7 +99,7 @@ img {
   font-weight: 400;
 }
 
-#main-signup-btn, #main-login-btn {
+#main-signup-btn, #main-login-btn, #main-story-btn {
   background-color: #FBAE17;
   border-radius: 3px;
   font-family: 'Karla', sans-serif;
@@ -61,6 +107,15 @@ img {
   font-weight: 700;
   margin: 10px;
   padding: 10px 40px;
+}
+
+a, a:visited, a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+#main-signup-btn:hover, #main-login-btn:hover, #main-story-btn:hover {
+  background-color: #db9204;
 }
 
 #about-container {
@@ -105,8 +160,11 @@ img {
 }
 
 #quote-container3 {
-  padding: 100px 50px 20px 50px;
+  background-color: #FBAE17;
+  padding: 75px 50px 20px 50px;
+  margin: 0 auto;
   margin-bottom: 50px;
+  width: 70%;
 }
 
 #quote1, #quote2 {
@@ -117,10 +175,11 @@ img {
 }
 
 #quote3 {
-  color: #FBAE17;
+  color: #FFF;
   font-family: 'Karla', sans-serif;
   font-size: 24px;
   font-weight: 400;
+  padding: 10px;
 }
 
 #name1, #name2, #name3 {
@@ -136,7 +195,7 @@ hr {
 
 /* Data Carousel */
 #carousel-example-generic {
-  height: 500px;
+  height: 600px;
 }
 
 .carousel-control.left, 
@@ -145,7 +204,7 @@ hr {
 }
 
 .carousel-inner {
-  margin-top: 60px;
+  margin-top: 100px;
 }
 
 .caption-text {
@@ -154,13 +213,24 @@ hr {
   font-weight: 400;
 }
 
-#origin-container, #race-container, #age-container {
-  margin: 0 auto;
-  width: 800px;
+#main-carousel-container {
+  margin-top: 20px;
+}
+
+#analysis-line hr {
+  background-color: #000;
+  height: 2.5px;
+  width: 20%;
+}
+
+#origin-container, #race-container, #multiracial-container, #age-container {
+  margin: 50px auto;
+  height: auto;
+  width: 950px;
 }
 
 .glyphicon-chevron-right, .glyphicon-chevron-left {
-  color: #0095A3;
+  color: #d3d3d3;
 }
 
 /* Data Analysis */
@@ -171,7 +241,7 @@ hr {
 }
 
 #analysis-title {
-  color: #FFF;
+  color: #0095A3;
   font-family: 'Roboto Slab', serif;
   font-size: 30px;
   font-weight: 400; 
@@ -185,10 +255,19 @@ hr {
   padding-bottom: 100px; 
 }
 
+#analysis-text::first-letter {
+  float: left;
+  font-family: 'Oswald', sans-serif;
+  font-size: 90px;
+  font-weight: 400;
+  line-height: 90%; 
+  padding-right: 10px;
+}
+
 /* Story */
 #story-logo-container {
   background: #fff;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 #story-logo {
@@ -197,7 +276,7 @@ hr {
   font-size: 55px;
   font-weight: 700;
   margin-bottom: -30px;
-  margin-top: 100px;
+  margin-top: 50px;
   vertical-align: center;
 }
 
@@ -265,17 +344,14 @@ hr {
   font-family: 'Karla', sans-serif;
   font-size: 16px;
   font-weight: 700;
-  margin-right: 10%;
+  margin-right: -15px;
+  position: relative;
+  top: -10px;
 }
 
 .entry-stories {
   float: left;
   padding: 10px;
-  margin: 10px;
-}
-
-.entry-favorites {
-  float: left;
   margin: 10px;
 }
 
@@ -311,10 +387,78 @@ textarea {
 }
 
 .entry-favorites {
-  width: 400px;
+  padding: 20px;
 }
 
 .favorites-img {
-  max-height: 150px;
-  width: auto;
+  display: inline-block;
+  float: left;
+  height: auto;
+  padding-right: 30px;
+  width: 200px;
 }
+
+.favorites-line hr {
+  background-color: #0095A3;
+  height: 1px;
+  width: 100%;
+}
+
+/* Login & Signup */
+.modal-content {
+  background-color: rgba(255,255,255,0.9);
+}
+
+.modal-title {
+  color: #0095A3;
+  font-family: 'Karla', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+label[for=inputUsername], label[for=inputPassword] {
+  padding-left: 0;
+}
+
+input[name="username"], input[name="password"], select[name="prompt"], input[name="location"], textarea[name="anecdote"] {
+  background-color: rgba(255,255,255,0.6);
+}
+
+#login-submit-btn, #signup-submit-btn, #story-submit-btn, #update-btn {
+  background-color: #0095A3;
+  border: 1px solid grey;
+}
+
+#login-submit-btn:hover, #signup-submit-btn:hover, #story-submit-btn:hover, #update-btn:hover {
+  background-color: #26767d;
+}
+
+input[name="location"], select[name="prompt"], textarea[name="anecdote"],input[type="file"] {
+  margin-bottom: 20px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, select[name="prompt"]:focus, textarea[name="anecdote"]:focus, input[type="file"]:focus {
+  border-color: rgba(0, 149, 163, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 149, 163, 0.6);
+  outline: 0 none;
+}
+
+/* Charts */
+#age-1990-btn, #age-2000-btn, #age-2010-btn {
+  background-color: #FFF;
+  border: 2px solid #0095A3;
+  border-radius: 5px;
+  color: #0095A3;
+  font-family: 'Karla', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  outline: 0;
+  padding: 10px 20px;
+}
+
+#age-btn-container .active {
+  background-color: #0095A3;
+  color: #FFF;
+}
+

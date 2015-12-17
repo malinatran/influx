@@ -11,19 +11,19 @@
   </div>
 </div>
 
-<button type="button" class="btn btn-default" id="share-story-btn" data-toggle="modal" data-target="#story-modal"><span class="glyphicon glyphicon-plus"></span>&nbsp; SHARE YOUR STORY</button>
 {{!-- CONTAINER --}}
 <div id="stories-container" class="container">
   {{!-- TITLE --}}
   <span id="my-stories">My Stories</span>
+  <button type="button" class="btn btn-default" id="share-story-btn" data-toggle="modal" data-target="#story-modal"><span class="glyphicon glyphicon-plus"></span>&nbsp; SHARE YOUR STORY</button>
   {{!-- SUBCONTAINER --}}
   <div id="stories-subcontainer" class="row text-left">
 
     {{#each stories}}
     <div class="entry-stories">
       <div class="entry-text-container">
-        <div><strong>{{location}}</strong></div>
         <div>{{date}}</div>
+        <div><strong>{{location}}</strong></div>
       </div> {{!-- entry-text-container --}}
       <div class="button-container">
         <button class="btn btn-default view-btn" ><span class="glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#story-modal-view-{{_id}}"></span></button>
@@ -39,28 +39,26 @@
 {{!-- CONTAINER --}}
 <div id="favorites-container" class="container">
   {{!-- TITLE --}}
-  <span id="my-favorites"><span class="glyphicon glyphicon-heart"></span>&nbsp;'d Stories</span>
+  <span id="my-favorites"><span class="glyphicon glyphicon-heart" style="color:red"></span>&nbsp;'d Stories</span>
   {{!-- SUBCONTAINER --}}
-  <div id="favorites-subcontainer" class="row text-center">
+  <div id="favorites-subcontainer" class="row">
 
     {{#each favorites}}
-    <div class="row">
-      <div class="entry-favorites col-md-12">
-        {{!-- <div class="col-md-12"> --}}
-          <div class="col-md-4">
-            <img src="{{image}}" class="favorites-img"/>
-          </div>
-          <div class="col-md-8">
-            <div class="favorites-date">{{date}}</div>
-            <div class="favorites-location">{{location}}</div>
-            <div class="favorites-anecdote">{{anecdote}}</div>
-          </div>
-        </div>
-      </div>
+    <div class="entry-favorites row col-md-12">
+      <span class="image-container">
+          <img src="{{image}}" class="favorites-img img-rounded"/>
+      </span>
+      <span class="col-md-9">
+        <div class="favorites-date">{{date}}</div>
+        <div class="favorites-location"><strong>{{location}}</strong></div>
+        <div class="favorites-anecdote">{{anecdote}}</div>
+      </span>
+    </div>
+    <div class="favorites-line"><hr></div>
     {{!-- </div> --}}
     {{/each}}
 
-  </div>
+  {{!-- </div> --}}
 </div>
 
 {{/isUserLoggedIn}}
@@ -72,7 +70,7 @@
       <form action="/stories" method="POST">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">New Story</h4>
+          <h4 class="modal-title" id="myModalLabel">Share your story</h4>
         </div>
         <div class="modal-body">
           <div class="row">
@@ -84,13 +82,19 @@
           </div>
           <div class="row">
             <div class="col-md-12">
+              Choose a prompt if you'd like, or just freestyle it.&nbsp;
               <select name="prompt" id="selected-prompt">
                 <option value=""></option>
-                <option value="prompt1">Where are you at in life?</option>
-                <option value="prompt2">What has been your biggest regret?</option>
-                <option value="prompt3">Who are you?</option>
-                <option value="prompt4">Where do you see yourself in 5 years?</option>
-                <option value="prompt5">What are you currently struggling with?</option>
+                <option value="prompt1">Where are you, personally or professionally, at this moment in life?</option>
+                <option value="prompt2">Share with us your biggest mistake you've made or biggest regret you have.</option>
+                <option value="prompt3">Who are you? Who do you want to be?</option>
+                <option value="prompt4">In five years, where do you see yourself? What does your life look like?</option>
+                <option value="prompt5">Tell us what you're struggling with &mdash; vices, addiction, self-perception, etc.</option>
+                <option value="prompt6">What are some memories from your childhood? Why are they important to you?</option>
+                <option value="prompt7">Describe a moment when you felt vulnerable.</option>
+                <option value="prompt8">Where are you from? And what does belonging mean to you?</option>
+                <option value="prompt9">What did you do today?</option>
+                <option value="prompt10">What would you do if you knew that you could not fail? How far would you go?</option>
               </select>
             </div>
           </div>
@@ -181,11 +185,16 @@
             <div class="col-md-12">
               <select name="prompt" id="selected-prompt">
                 <option value="">Choose your prompt</option>
-                <option value="prompt1" {{#ifEquals prompt "prompt1"}}selected{{/ifEquals}}>Where are you at in life?</option>
-                <option value="prompt2" {{#ifEquals prompt "prompt2"}}selected{{/ifEquals}}>What has been your biggest regret?</option>
-                <option value="prompt3" {{#ifEquals prompt "prompt3"}}selected{{/ifEquals}}>Who are you?</option>
-                <option value="prompt4" {{#ifEquals prompt "prompt4"}}selected{{/ifEquals}}>Where do you see yourself in 5 years?</option>
-                <option value="prompt5" {{#ifEquals prompt "prompt5"}}selected{{/ifEquals}}>What are you currently struggling with?</option>
+                <option value="prompt1" {{#ifEquals prompt "prompt1"}}selected{{/ifEquals}}>Where are you, personally or professionally, at this moment in life?</option>
+                <option value="prompt2" {{#ifEquals prompt "prompt2"}}selected{{/ifEquals}}>Share with us your biggest mistake you've made or biggest regret you have.</option>
+                <option value="prompt3" {{#ifEquals prompt "prompt3"}}selected{{/ifEquals}}>Who are you? Who do you want to be?</option>
+                <option value="prompt4" {{#ifEquals prompt "prompt4"}}selected{{/ifEquals}}>In five years, where do you see yourself? What does your life look like?</option>
+                <option value="prompt5" {{#ifEquals prompt "prompt5"}}selected{{/ifEquals}}>Tell us what you're struggling with &mdash; vices, addiction, self-perception, etc.</option>
+                <option value="prompt6" {{#ifEquals prompt "prompt6"}}selected{{/ifEquals}}>What are some memories from your childhood? Why are they important to you?</option>
+                <option value="prompt7" {{#ifEquals prompt "prompt7"}}selected{{/ifEquals}}>Describe a moment when you felt vulnerable.</option>
+                <option value="prompt8" {{#ifEquals prompt "prompt8"}}selected{{/ifEquals}}>Where are you from? And what does belonging mean to you?</option>
+                <option value="prompt9" {{#ifEquals prompt "prompt9"}}selected{{/ifEquals}}>What did you do today?</option>
+                <option value="prompt10" {{#ifEquals prompt "prompt10"}}selected{{/ifEquals}}>What would you do if you knew that you could not fail? How far would you go?</option>
               </select>
             </div>
           </div>
@@ -198,7 +207,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="reset" class="btn btn-default">Reset</button>
-          <button type="submit" class="btn btn-primary update-btn">Update</button>
+          <button type="submit" class="btn btn-primary" id="update-btn">Update</button>
         </div>
       </form>
     </div>
