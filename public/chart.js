@@ -1,15 +1,5 @@
 $(function() { 
 
-  // Work in progress: stylizing tagline
-  // var randLetter = Math.floor((Math.random()*30)+1);
-  // var randColor = Math.floor((Math.random()*3)+1);
-  // var colors = ['#FBAE17', '#0095A3', '#A63E14', '#FBAE17'];
-  // var $text = $('#tagline').text();
-  // var $textSplit = $text.split('');
-  // var $selectedLetter = $textSplit[randLetter];
-  // var selectedColor = colors[randColor];
-  // console.log($selectedLetter);
-
   $('.carousel').each(function(){
     $(this).carousel({
       interval: false
@@ -486,7 +476,7 @@ $(function() {
       type: 'bar'
     },
     title: {
-      text: 'Moving toward a majority minority population'
+      text: 'A diverse and diversifying country'
     },
     // subtitle: {
     //   text: 'Source: U.S. Census Bureau'

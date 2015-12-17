@@ -150,19 +150,5 @@ $(function() {
     oms.addMarker(marker);
   });
 
-  // CLick function for user to favorite
-
-  $('body').on('click', '#like', function() {
-    console.log('clicked');
-    $(this).css('color', 'red');
-    var storyId = $(this).data('id');
-    console.log(storyId);
-    $.ajax({
-      url: "/users", 
-      type: "PUT",
-      data: { storyId: storyId }
-    })
-  });
-
 });
 
