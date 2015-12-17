@@ -113,7 +113,7 @@ $(function() {
            color: '#000'
         },
         itemHoverStyle: {
-           color: '#000'
+           color: '#FFF'
         },
         itemHiddenStyle: {
            color: '#606063'
@@ -358,7 +358,7 @@ $(function() {
            fontSize: '12px'
         },
         itemHoverStyle: {
-           color: '#FFF'
+           color: '#000'
         },
         itemHiddenStyle: {
            color: '#606063'

@@ -1,7 +1,7 @@
 {{#each stories}}
 <div class="google-map-stories hidden" data-lat="{{latitude}}" data-lng="{{longitude}}">
   <h5><span id="like" data-id="{{_id}}" class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;{{location}}</h5>
-  <img src="{{image}}"/>
+  <img src="{{image}}" class="map-image"/>
   <p>{{anecdote}}</p>
 </div>
 {{/each}}
@@ -132,7 +132,7 @@
     <p id="story-logo">HUMANS OF AMERICA</p>
     <img src="/stories.png" id="stories-logo"/>
   </div>
-  <div class="row text-center">
+  <div class="row text-center" style="margin-top: 16px;">
     <span id="partnership-text">In partnership with Humans of New York</span>
   </div>
 </div>
