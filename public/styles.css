@@ -35,7 +35,7 @@ img {
 #title-container{
   background: url(http://api.thumbr.it/whitenoise-361x370.png?background=ddddddff&noise=000000&density=15&opacity=15);
   height: 800px;
-  padding-top: 30px;
+  padding-top: 10px;
   top: 0;
 }
 
@@ -233,8 +233,15 @@ hr {
   width: 20%;
 }
 
-#origin-container, #race-container, #multiracial-container, #age-container {
+#origin-container, #race-container, #multiracial-container {
   margin: 50px auto;
+  height: auto;
+  width: 950px;
+}
+
+#age-container {
+  margin: 50px auto;
+  margin-bottom: 0;
   height: auto;
   width: 950px;
 }

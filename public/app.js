@@ -17,7 +17,6 @@ $(function() {
   $('#tagline').lettering();
   var taglineText = $('#tagline').text();
   var length = taglineText.length;
-  console.log(length);
 
   setInterval(function() {
     var index1 = Math.floor(Math.random()*length)+1;
