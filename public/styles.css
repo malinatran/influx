@@ -302,20 +302,63 @@ hr {
   width: 200px;
 }
 
+#partnerships {
+  margin-bottom: 10px;
+}
+
 #partnership-text {
   border-bottom: 1px solid #B3461A;
   font-family: 'Karla', sans-serif;
   font-size: 20px;
   font-weight: 400;
+  padding-bottom: 10px;
+  padding-top: 5px;
+}
+
+#instructions {
+  cursor: default;
+  margin-bottom: 15px;
+  margin-top: 25px;
+}
+
+#instructions-text {
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
   margin-top: 5px;
-  padding-bottom: 5px;
+}
+
+#google-marker {
+  height: auto;
+  width: 10px;
+}
+
+#dropdown {
+  background-color: rgba(255,255,255,0.9);
+  border: 1px solid black;
+  display: none;
   padding-top: 20px;
+  padding-bottom: 20px;
+  position: absolute;
+  left: 50%;
+  text-align: left;
+  transform: translateX(-50%);
+  width: 425px;
+  z-index: 10;
+}
+
+#dropdown li:before {
+  background-color: #FFF;
+  position: absolute;
+  top: 10px;
+  margin-left: 8px;
 }
 
 /* Map */
 #map-canvas {
   margin: 0 auto;
-  height: 400px;
+  height: 390px;
 }
 
 #like {

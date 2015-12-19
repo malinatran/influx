@@ -39,4 +39,9 @@ $(function() {
     $('.char' + index2).addClass('color-text');
   }, 1000);
 
+  // Hover over instructions in Humans of America
+  $('#instructions-text').on('mouseenter mouseleave', function() {
+    $('#dropdown').stop().slideToggle(300);
+  }); 
+
 });
